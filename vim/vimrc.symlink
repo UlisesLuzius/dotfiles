@@ -50,6 +50,10 @@ Plug 'moll/vim-bbye'
 " Colors
 Plug 'dracula/vim', {'as': 'dracula'}
 
+" IDE features
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 call plug#end()
 
 set nocompatible              " be iMproved, required
@@ -60,6 +64,7 @@ filetype plugin indent on    " required
 "
 " Settings
 "
+set clipboard=unnamedplus
 set noerrorbells                " No beeps
 set number                      " Show line numbers
 set backspace=indent,eol,start  " Makes backspace key more powerful.
@@ -293,12 +298,26 @@ nnoremap <leader><space> :nohlsearch<CR>
 " Buffer prev/next
 nnoremap <C-x> :bnext<CR>
 nnoremap <C-z> :bprev<CR>
+nnoremap <C-W><C-B>c :bw<CR>
 
 " Better split switching
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+" Tab actions
+nnoremap <C-W><C-T>N :tabnew<CR>
+nnoremap <C-W><C-T><C-C> :tabclose<CR>
+nnoremap <C-W><C-T><C-N> :tabnext<CR>
+nnoremap <C-W><C-T><C-B> :tabNext<CR>
+nnoremap <C-W><C-T><C-W><C-T> <C-W>:tabprevious<CR>
+
+
+tnoremap <C-W><C-T><C-N> <C-W>:tabnext<CR>
+tnoremap <C-W><C-T><C-B> <C-W>:tabNext<CR>
+tnoremap <C-W><C-T><C-W><C-T> <C-W>:tabprevious<CR>
+
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -450,8 +469,8 @@ let g:terraform_align=1
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-nmap <C-b> :FZF<cr>
-imap <C-b> <esc>:FZF<cr>
+nmap <C-P><C-B> :FZF<cr>
+imap <C-P><C-B> <esc>:FZF<cr>
 
 " ==================== Fugitive ====================
 nnoremap <leader>ga :Git add %:p<CR><CR>
@@ -512,7 +531,7 @@ let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'
 
 "==================== NerdTree ====================
 " For toggling
-nmap <C-n> :NERDTreeToggle<CR>
+nmap <C-p><C-t> :NERDTreeToggle<CR>
 noremap <Leader>n :NERDTreeToggle<cr>
 noremap <Leader>f :NERDTreeFind<cr>
 
