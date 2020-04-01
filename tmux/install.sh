@@ -4,4 +4,4 @@ test -f ~/.tmux.conf && {
 }
 test -L ~/.tmux.conf || {
 	ln -s "$DOTFILES"/tmux/tmux.conf ~/.tmux.conf
-{
+}
