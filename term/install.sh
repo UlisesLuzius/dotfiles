@@ -1,6 +1,14 @@
 #!/bin/sh
-test -L ~/.Xresources || {
+test -f ~/.Xresources && {
 	mv ~/.Xresources ~/.Xresources.local
-	ln -s "$DOTFILES"/Xresources ~/.Xresources
 }
-test -f ~/.Xresources || touch ~/.Xresources.local
+test -L ~/.Xresources || {
+	ln -s "$DOTFILES"/term/Xresources ~/.Xresources
+}
+
+test -f ~/.xinitrc && {
+	mv ~/.xinitrc ~/.xinitrc.local
+}
+test -L ~/.xinitrc || {
+	ln -s "$DOTFILES"/term/xinitrc ~/.xinitrc
+}

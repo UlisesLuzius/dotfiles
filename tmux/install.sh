@@ -1,6 +1,7 @@
 #!/bin/sh
-test -L ~/.tmux.conf || {
+test -f ~/.tmux.conf && {
 	mv ~/.tmux.conf ~/.tmux.conf.local
-	ln -s "$DOTFILES"/tmux/tmux.conf ~/.tmux.conf
 }
-test -f ~/.tmux.conf || touch ~/.tmux.conf.local
+test -L ~/.tmux.conf || {
+	ln -s "$DOTFILES"/tmux/tmux.conf ~/.tmux.conf
+{
